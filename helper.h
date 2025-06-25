@@ -6,13 +6,19 @@ enum bet
     dont_come,
     field,
     proposition
-} player_bet;
+};
+
+typedef enum bet bet_t;;
+bet_t player_bet;
 
 enum phase
 {
     come_out,
     points
-} game_phase;
+};
+
+typedef enum phase phase_t;
+phase_t game_phase;
 
 void flushInput(void);
 int rollDie(void);
