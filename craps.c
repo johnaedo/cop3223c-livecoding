@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <time.h>
 #include <string.h>
-#include "helper.h"
+#include "gamesave.h"
 
 int main(void)
 {
@@ -14,7 +14,11 @@ int main(void)
     int point = 0;
     int betAmount = 0;
     game_phase = come_out;
+    gameState_t *gamestate;
+    gameState_t *highScorer;
+    FILE *fp;
 
+    gamestate = malloc(sizeof(gameState_t));
     srand(time(0));
 
 
@@ -23,6 +27,25 @@ int main(void)
     fgets(name, 50, stdin);
     // scanf("%s", name);
     // flushInput();
+
+    fp = fopen("gamesave.txt", "r");
+    // if (fp == NULL) {
+    //     printf("Unable to open gamesave.txt.  Exiting.\n");
+    //     exit(1);
+    // }
+    gamestate = loadGame(fp, name);
+    fclose(fp);
+    fp = fopen("gamesave.txt", "r");
+    highScorer = getHighScorer(fp);
+    fclose(fp);
+
+    printf("===================================\n");
+    printf("Current High Scorer:  %s\n", highScorer->name);
+    printf("Winnings: %d\n", highScorer->money);
+    printf("===================================\n");
+
+    free(highScorer);
+
     printf("You have a starting pot of %d\n", money);
     do
     {
@@ -45,4 +68,9 @@ int main(void)
             scanf(" %c", &choice);
         }
     } while (money > 0 && choice == 'y');
+    fp = fopen("gamesave.txt", "a");
+    saveGame(fp, gamestate);
+    fclose(fp);
+
+    free(gamestate);
 }
