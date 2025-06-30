@@ -2,6 +2,8 @@
 #include <stdlib.h>
 #include <string.h>
 
+/* File I/O with fgets and processing line endings */
+
 void chop(char *str) {
     /*
     str[len - 1] :  Last character, which we expect is '\n'
