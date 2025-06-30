@@ -1,5 +1,9 @@
 craps
+hello
 fileio
 structs
 structs_fileio
 unions
+*.tmp
+!newdataa/*.tmp
+node_modules

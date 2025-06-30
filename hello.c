@@ -1,6 +1,11 @@
 /* hello.c for COP 3223C */
 #include <stdio.h>
 
+
+void printHello(void *data) {
+	printf("Hello, %s!\n", (char*) data);
+}
+
 int main(void) {
-  printf("Hello, COP 3223C!\n");
+	printHello("COP 3223C");
 }
