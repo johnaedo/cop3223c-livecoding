@@ -1,13 +1,12 @@
 #include <stdio.h>
-#include "helper.h"
+#include "bets.h"
 
-struct gameState {
+typedef struct gameState {
     char name[50];
     int money;
     phase_t current_phase;
-};
-
-typedef struct gameState gameState_t;
+    int points;
+} gameState_t;
 
 void saveGame(FILE *, gameState_t *);
 gameState_t *  loadGame(FILE *, char [50]);

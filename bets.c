@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <time.h>
 #include <string.h>
-#include "helper.h"
+#include "bets.h"
 
 void flushInput(void) {
     scanf("%*[^\n]"); // Discards characters until newline
@@ -15,9 +15,9 @@ int rollDie()
     return (rand() % 6) + 1;
 }
 
-void printState(enum bet player_bet, enum phase game_phase) {
+void printState(bet_t player_bet, phase_t game_phase) {
     char phase_string[15];
-    char bet_string[15];
+    char bet_string[50];
     switch (game_phase) {
         case come_out:
             strcpy(phase_string, "COME OUT");
@@ -27,12 +27,26 @@ void printState(enum bet player_bet, enum phase game_phase) {
             break;
     }
     switch (player_bet) {
+        case come:
+            strcpy(bet_string, "Come");
+            break;
         case pass:
             strcpy(bet_string, "Pass");
             break;
         case dont_pass:
             strcpy(bet_string, "Don't Pass");
             break;
+        case dont_come:
+            strcpy(bet_string, "Don't Come");
+            break;
+        case field:
+            strcpy(bet_string, "Field");
+            break;
+        case proposition:
+            strcpy(bet_string, "Proposition");
+            break;
+        default:
+            strcpy(bet_string, "Error, no such bet type.");
     }
     printf("Bet:  %s\tPhase:  %s\n", bet_string, phase_string);
 }
@@ -78,7 +92,7 @@ int setBetAmount(int money)
     The shooter must now continue rolling until they either roll the point number again or roll a 7 (which ends the round).
 */
 
-void evaluateBet(int bet, int total, enum phase *game_phase, int betAmount, int *money, int *point)
+void evaluateBet(int bet, int total, phase_t *game_phase, int betAmount, int *money, int *point)
 {
     if (*game_phase == come_out)
     {
