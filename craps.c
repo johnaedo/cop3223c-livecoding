@@ -4,6 +4,21 @@
 #include <string.h>
 #include "gamesave.h"
 
+char * getString(char *message) {
+    char * str = malloc(sizeof(char) * 100);
+    printf("%s: ", message);
+    if (fgets(str, sizeof(str), stdin) != NULL) {
+        // Find the newline character
+        char *newline_ptr = strchr(str, '\n');
+
+        // If a newline is found, replace it with the null terminator
+        if (newline_ptr != NULL) {
+            *newline_ptr = '\0';
+        }
+    }
+    return str;
+}
+
 int main(void)
 {
     char name[50] = "";
@@ -23,16 +38,9 @@ int main(void)
 
 
     printf("Welcome to COP3223C Gambling Night!\n");
-    printf("What's your name? ");
-    fgets(name, 50, stdin);
-    // scanf("%s", name);
-    // flushInput();
-
-    fp = fopen("gamesave.txt", "r");
-    // if (fp == NULL) {
-    //     printf("Unable to open gamesave.txt.  Exiting.\n");
-    //     exit(1);
-    // }
+    strcpy(name, getString("What's your name? "));
+    flushInput();
+    fp = fopen("gamesave.txt", "w+");
     gamestate = loadGame(fp, name);
     fclose(fp);
     fp = fopen("gamesave.txt", "r");

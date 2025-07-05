@@ -4,7 +4,7 @@
 #include "gamesave.h"
 
 void saveGame(FILE *fp, gameState_t *gamestate) {
-    fprintf(fp, "%s,%d,%d\n", gamestate->name, gamestate->money, gamestate->current_phase);
+    fprintf(fp, "%s,%d,%d,%d\n", gamestate->name, gamestate->money, gamestate->current_phase, gamestate->points);
 }
 
 /* Text File contains a line like this:
@@ -28,6 +28,8 @@ gameState_t * loadGame(FILE *fp, char name[50]) {
                     break;
                 case 2:
                     gamestate->current_phase = atoi(myPtr);
+                case 3:
+                    gamestate->points = atoi(myPtr);
             }
             myPtr = strtok(NULL, ",");
             i++;
@@ -62,6 +64,8 @@ gameState_t * getHighScorer(FILE *fp) {
                     break;
                 case 2:
                     currentPlayer->current_phase = atoi(myPtr);
+                case 3:
+                    currentPlayer->points = atoi(myPtr);
             }
             myPtr = strtok(NULL, ",");
             i++;
