@@ -1,6 +1,6 @@
 # COP 3223C Intro to Programming in C
 | Dr. John Aedo | Summer 2025 |
--------------------------------
+===============================
 | BA 114        | Mon, Wed 4:00pm - 5:50pm |
 | Office Hours  | HEC 328 Mon, Wed 2pm-4pm |
 
