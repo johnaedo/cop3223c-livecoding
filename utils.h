@@ -1,1 +1,0 @@
-const int max_age = 100;
