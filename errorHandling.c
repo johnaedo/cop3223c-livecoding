@@ -1,13 +1,20 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include <errno.h>
 #include <string.h>
 
 extern int errno;
+const int EXITFAILURE = -1;
+const int EXITSUCCESS = 0;
+
+void noFile(void);
+void divideByZero(void);
+void exitStatus(void);
 
 int main () {
 
-//    noFile();
-//    divideByZero();
+// noFile();
+   divideByZero();
    return 0;
 }
 
@@ -31,7 +38,7 @@ void noFile()
 void divideByZero()
 {
    int dividend = 20;
-   int divisor = 1;
+   int divisor = 0;
    int quotient;
 
    if( divisor == 0){
@@ -47,19 +54,17 @@ void divideByZero()
 
 void exitStatus()
 {
-   const int EXIT_FAILURE = -1;
-   const int EXIT_SUCCESS = 0;
    int dividend = 20;
    int divisor = 5;
    int quotient;
 
    if( divisor == 0) {
       fprintf(stderr, "Division by zero! Exiting...\n");
-      exit(EXIT_FAILURE);
+      exit(EXITFAILURE);
    }
 
    quotient = dividend / divisor;
    fprintf(stderr, "Value of quotient : %d\n", quotient );
 
-   exit(EXIT_SUCCESS);
+   exit(EXITSUCCESS);
 }
