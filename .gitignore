@@ -9,3 +9,4 @@ mem
 structs
 structsFileio
 unions
+fgetc

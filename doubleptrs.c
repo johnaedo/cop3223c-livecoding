@@ -1,5 +1,4 @@
 #include <stdio.h>
-#include <stdlib.h>
 
 int main(void) {
     char *myStrings[10] = {"COP 3223", "CDA 3103", "CIS 4004", "CIS 3990", "CIS 4991", "COP 4600", "COP 5611", "COP 4910", "COP 4331", "CS Advising"};
